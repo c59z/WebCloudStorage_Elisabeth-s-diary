@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuki.Mapper.UserMapper">
+    <insert id="userRegister">
+insert into sys_user(username,password,createDate) values(#{user.username},#{user.password},#{user.createdate})
+    </insert>
+    <update id="changeUserPassword">
+        update sys_user set password = #{userDto.passwordNew},updateDate = #{userDto.updatedate} where id = #{userDto.id}
+    </update>
+    <update id="changeUserAvatar">
+        update sys_user set avatar = #{imageUrl} where id = #{userId}
+    </update>
+    <select id="getUserByName" resultType="com.yuki.Domain.Entity.User">
+
+        select * from sys_user where username = #{name}
+
+    </select>
+    <select id="getUserRoleById" resultType="java.lang.String">
+        SELECT
+            NAME
+        FROM
+            sys_role
+        WHERE id =
+              (SELECT
+                   role_id
+               FROM
+                   sys_user
+               WHERE id = #{id}) ;
+    </select>
+    <select id="getUserPermByRoleName" resultType="java.lang.String">
+
+        SELECT m.perm
+        FROM sys_menu m
+                 JOIN sys_menu_role mr ON m.id = mr.menu_id
+                 JOIN sys_role r ON r.id = mr.role_id
+        WHERE r.name = #{roleName};
+
+    </select>
+    <select id="getUserById" resultType="com.yuki.Domain.Entity.User">
+        select * from sys_user where id = #{id}
+    </select>
+    <select id="getUserStorageSizeById" resultType="java.lang.Integer">
+        select storage from sys_storage where id =
+                                              (select storage_id from sys_user where id = #{id})
+    </select>
+</mapper>

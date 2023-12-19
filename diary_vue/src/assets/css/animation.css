@@ -1,0 +1,15 @@
+.show-enter-active, .show-leave-active {
+    transition: opacity 0.5s;
+}
+.show-enter, .show-leave-to {
+    opacity: 0;
+}
+
+/*.drawer-enter-active, .drawer-leave-active {*/
+/*    transition: all 0.1s;*/
+/*    height: 45px;*/
+/*}*/
+/*.drawer-enter, .drawer-leave-to !* .slide-fade-leave-active in <2.1.8 *! {*/
+/*    transform: translateY(-100%);*/
+/*    opacity: 0;*/
+/*}*/

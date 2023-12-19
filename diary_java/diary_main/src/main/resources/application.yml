@@ -1,0 +1,43 @@
+server:
+  port: 7777
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/el_diary?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: yuki
+    password: ayase
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1048MB
+      enabled: true
+mybatis-plus:
+  configuration:
+    # 日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: delFlag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: auto
+shiro-redis:
+  enabled: true
+  redis-manager:
+    host: 127.0.0.1:6379
+yuki:
+  jwt:
+    # 加密秘钥
+    secret: f4e2e52034348f86b67cde581c0f9eb5
+    # token有效时长，7天，单位秒
+    expire: 604800
+    header: token
+
+
+user:
+  filepath: D:/code/Project/java/WebCloudStorage_Elisabeth's diary/CloudDiary
+  CloudStorage: /CloudStorage
+  UserAvatars: /UserAvatars
+  RecycleBin: /RecycleBin
+  PackageTemp: /PackageTemp
+#  filepath: /home/yuki/libraryServer
